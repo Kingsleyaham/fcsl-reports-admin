@@ -1,3 +1,4 @@
+import { ERRORS } from "../constants";
 import { sentenceCase } from "./textCase";
 
 // const customId = "toastId";
@@ -13,4 +14,17 @@ export const alertErrors = (errors: any, toast: any) => {
       toast.error(sentenceCase(errors));
     }
   }
+};
+
+export const handleAsyncError = (err: any, toast: any) => {
+  let errorMsg = "";
+
+  if (!err?.response) errorMsg = ERRORS.NO_SERVER_RESPONSE;
+  else if (err.response?.status === 400) errorMsg = ERRORS.STATUS_400;
+  else if (err.response?.status === 401) errorMsg = ERRORS.STATUS_401;
+  else errorMsg = ERRORS.DEFAULT;
+
+  console.log(errorMsg);
+
+  toast.error(sentenceCase(errorMsg));
 };

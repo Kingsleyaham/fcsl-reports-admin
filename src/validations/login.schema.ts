@@ -1,5 +1,5 @@
 import { object, string, ObjectSchema, setLocale } from "yup";
-import { ILogin } from "../interfaces/login.interface";
+import { ILogin } from "../interfaces/auth.interface";
 
 setLocale({
   mixed: {

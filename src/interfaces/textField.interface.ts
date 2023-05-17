@@ -1,5 +1,5 @@
 import { FieldErrors } from "react-hook-form";
-import { ILogin } from "./login.interface";
+import { ILogin } from "./auth.interface";
 
 export interface ITextField {
   name: string;
