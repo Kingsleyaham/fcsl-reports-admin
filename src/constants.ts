@@ -4,6 +4,8 @@ export const BASE_URL = !(process.env.NODE_ENV === "development")
 
 export const MESSAGES = {
   LOGIN_SUCCESS: "login succesful",
+  UPLOAD_REPORT_SUCCESS: "report uploaded successfully",
+  DELETE_SUCCESS: "report(s) deleted successfully",
 };
 
 export const ERRORS = {

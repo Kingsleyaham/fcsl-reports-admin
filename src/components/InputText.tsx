@@ -1,4 +1,4 @@
-import { ITextField } from "../../../interfaces/textField.interface";
+import { ITextField } from "../interfaces/textField.interface";
 
 interface PropsTypes extends Partial<ITextField> {
   name: string;

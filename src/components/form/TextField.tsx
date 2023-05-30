@@ -1,7 +1,7 @@
 import { ITextField } from "../../interfaces/textField.interface";
 import { titleCase } from "../../utils/textCase";
-import InputText from "./components/InputText";
-import Label from "./components/Label";
+import InputText from "../InputText";
+import Label from "./Label";
 
 const TextField = ({
   type,

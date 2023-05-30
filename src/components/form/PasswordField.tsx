@@ -1,11 +1,11 @@
-import Label from "./components/Label";
 import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
 import { IPasswordField } from "../../interfaces/passwordField.interface";
-import InputPassword from "./components/InputPassword";
-import InputText from "./components/InputText";
+import InputPassword from "../InputPassword";
 import { titleCase } from "../../utils/textCase";
 import { useState } from "react";
+import Label from "./Label";
+import InputText from "../InputText";
 
 const PasswordField = ({
   name,

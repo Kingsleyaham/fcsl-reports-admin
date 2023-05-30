@@ -8,7 +8,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import { BASE_URL } from "../../constants";
 import { RootState } from "../store";
-import { logOut, setToken } from "../features/auth/authSlice";
+import { logoutUser, setToken } from "../features/auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: BASE_URL,
@@ -30,10 +30,8 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
   let result = await baseQuery(args, api, extraOptions);
 
   if (result.error && result.error.status === 403) {
-    console.log("sending refresh token");
     // try to get a new access token
     const refreshResult = await baseQuery("/refresh", api, extraOptions);
-    console.log(refreshResult);
 
     const { token }: any = refreshResult.data;
 
@@ -43,7 +41,7 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
       // retry initial query
       result = await baseQuery(args, api, extraOptions);
     } else {
-      api.dispatch(logOut());
+      api.dispatch(logoutUser());
     }
   }
 

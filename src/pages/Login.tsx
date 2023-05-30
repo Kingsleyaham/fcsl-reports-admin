@@ -10,17 +10,20 @@ import { useNavigate } from "react-router-dom";
 import { ILogin } from "../interfaces/auth.interface";
 import { useLoginMutation } from "../redux/api/auth.api";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { setToken } from "../redux/features/auth/authSlice";
+import { selectCurrentToken, setToken, setUser } from "../redux/features/auth/authSlice";
 import { sentenceCase } from "../utils/textCase";
 import { MESSAGES } from "../constants";
 
 const Login = () => {
-  const [login, { error }] = useLoginMutation();
+  const [login] = useLoginMutation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  // const token = useAppSelector()
+  const token = useAppSelector(selectCurrentToken);
 
-  // useEffect(() => {}, []);
+  useEffect(() => {
+    if (token) navigate("/dashboard");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const {
     formState: { errors },
@@ -35,15 +38,18 @@ const Login = () => {
     try {
       const userData: any = await login({ ...data });
       if (userData?.data) {
-        const { token } = userData.data;
+        const { token, user } = userData.data;
 
         dispatch(setToken({ token }));
+        dispatch(setUser({ user }));
         reset();
-        toast.success(MESSAGES.LOGIN_SUCCESS);
+        toast.success(MESSAGES.LOGIN_SUCCESS, {
+          toastId: "loginSuccessful",
+        });
 
         setTimeout(() => {
           navigate("/dashboard");
-        }, 1000);
+        }, 2000);
       } else {
         const {
           data: { error },

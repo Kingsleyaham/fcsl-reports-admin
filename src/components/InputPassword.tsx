@@ -1,4 +1,4 @@
-import { IPasswordField } from "../../../interfaces/passwordField.interface";
+import { IPasswordField } from "../interfaces/passwordField.interface";
 
 export interface PropsTypes extends Partial<IPasswordField> {
   name: string;
