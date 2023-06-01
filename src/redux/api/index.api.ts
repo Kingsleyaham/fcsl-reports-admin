@@ -33,9 +33,8 @@ const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, FetchBaseQue
     // try to get a new access token
     const refreshResult = await baseQuery("/refresh", api, extraOptions);
 
-    const { token }: any = refreshResult.data;
-
     if (refreshResult.data) {
+      const { token }: any = refreshResult.data;
       // store the new token
       api.dispatch(setToken({ token }));
       // retry initial query

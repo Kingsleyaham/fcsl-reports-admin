@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { MESSAGES } from "../../../constants";
 import { useSaveReportMutation } from "../../../redux/api/report.api";
 import { sentenceCase } from "../../../utils/textCase";
+import { BiLoaderCircle } from "react-icons/bi";
 
 type FormValues = {
   report: any;
@@ -15,6 +16,7 @@ type FormValues = {
 
 const CreatReport = () => {
   const [saveReport] = useSaveReportMutation();
+
   const {
     formState: { errors, isSubmitting },
     handleSubmit,
@@ -22,6 +24,8 @@ const CreatReport = () => {
     register,
     reset,
   } = useForm<FormValues>({ resolver: yupResolver(reportValidationSchema) });
+
+  // const avatar = register("avatar");
 
   const onSubmit: SubmitHandler<FormValues> = async (data: FormValues) => {
     console.log(data);
@@ -99,11 +103,14 @@ const CreatReport = () => {
         <div className="mt-6 mb-3 float-right">
           <button
             type="submit"
-            className={`bg-[#b41421] text-white hover:bg-[#6d7275] hover:text-[#ecebf3] font-semibold px-6 py-2 rounded-full`}
+            className={`bg-[#b41421] text-white hover:bg-[#6d7275] hover:text-[#ecebf3] font-semibold px-6 py-2 rounded-full ${
+              isSubmitting ? "cursor-not-allowed" : "cursor-pointer"
+            }`}
             // disabled={isSubmitting}
             disabled={isSubmitting}
           >
-            Upload
+            {isSubmitting && <BiLoaderCircle className="text-2xl inline-block pr-1" />}
+            <span className="inline-block">{isSubmitting ? "Uploading" : "Upload"}</span>
           </button>
         </div>
       </form>

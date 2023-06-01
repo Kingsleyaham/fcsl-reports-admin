@@ -1,6 +1,6 @@
-import { ITextField } from "../../interfaces/textField.interface";
+import { IInputField } from "../../interfaces/inputField.interface";
 import { titleCase } from "../../utils/textCase";
-import InputText from "../InputText";
+import InputText from "./InputText";
 import Label from "./Label";
 
 const TextField = ({
@@ -12,10 +12,15 @@ const TextField = ({
   labelName,
   htmlFor,
   errors,
-}: ITextField) => {
+  classNames,
+}: IInputField) => {
   return (
     <div>
-      <Label htmlFor={htmlFor ?? name} labelName={labelName ?? titleCase(name)} />
+      <Label
+        htmlFor={htmlFor ?? name}
+        labelName={labelName ?? titleCase(name)}
+        classNames={classNames ?? ""}
+      />
       <InputText
         name={name}
         type={type}

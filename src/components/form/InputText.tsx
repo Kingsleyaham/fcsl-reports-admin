@@ -1,6 +1,6 @@
-import { ITextField } from "../interfaces/textField.interface";
+import { IInputField } from "../../interfaces/inputField.interface";
 
-interface PropsTypes extends Partial<ITextField> {
+interface PropsTypes extends Partial<IInputField> {
   name: string;
 }
 
