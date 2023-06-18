@@ -1,7 +1,7 @@
 import { FieldErrors } from "react-hook-form";
 import { ILogin } from "./auth.interface";
 
-export interface ITextField {
+export interface IInputField {
   name: string;
   register?: any;
   type?: string;
@@ -10,4 +10,5 @@ export interface ITextField {
   labelName: string;
   htmlFor?: string;
   errors: FieldErrors<ILogin>;
+  classNames?: string;
 }

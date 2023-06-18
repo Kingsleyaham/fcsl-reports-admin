@@ -1,11 +1,11 @@
 import { AiOutlineEyeInvisible } from "react-icons/ai";
 import { AiOutlineEye } from "react-icons/ai";
-import { IPasswordField } from "../../interfaces/passwordField.interface";
-import InputPassword from "../InputPassword";
+import InputPassword from "./InputPassword";
 import { titleCase } from "../../utils/textCase";
 import { useState } from "react";
 import Label from "./Label";
-import InputText from "../InputText";
+import InputText from "./InputText";
+import { IInputField } from "../../interfaces/inputField.interface";
 
 const PasswordField = ({
   name,
@@ -14,7 +14,8 @@ const PasswordField = ({
   htmlFor,
   placeholder,
   errors,
-}: IPasswordField) => {
+  classNames,
+}: IInputField) => {
   const [pwdVisible, setPwdVisible] = useState(false);
 
   const togglePasswordVisible = () => setPwdVisible(!pwdVisible);
@@ -24,6 +25,7 @@ const PasswordField = ({
       <Label
         htmlFor={htmlFor ?? (name || "password")}
         labelName={labelName ?? (titleCase(name) || "Password")}
+        classNames={classNames ?? ""}
       />
       {pwdVisible ? (
         <>

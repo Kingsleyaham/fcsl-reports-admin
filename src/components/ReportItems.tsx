@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { toast } from "react-toastify";
 import { useDeleteReportMutation, useDeleteSelectedReportMutation } from "../redux/api/report.api";
 import { handleAsyncError } from "../utils/handleError";
 import { sentenceCase, titleCase } from "../utils/textCase";
 import { IReportProps } from "../interfaces/report.interface";
+import { MESSAGES } from "../constants";
 
 type PropTypes = {
   reports: IReportProps[];
@@ -19,6 +21,7 @@ const ReportItems = ({ reports, reportType, refetch }: PropTypes) => {
       const response: any = await deleteSelectedReport(type);
       refetch();
       console.log(response);
+      toast.success(titleCase(MESSAGES.DELETE_SUCCESS));
     } catch (err) {
       handleAsyncError(err, toast);
     }
@@ -122,12 +125,7 @@ const ReportItems = ({ reports, reportType, refetch }: PropTypes) => {
                   </th>
                   <td className="px-6 py-4">{report?.year}</td>
                   <td className="px-6 py-4">
-                    <a
-                      href={report?.reportUrl}
-                      className="text-blue-500"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
+                    <a href={report?.reportUrl} className="text-blue-500">
                       Preview
                     </a>
                   </td>
